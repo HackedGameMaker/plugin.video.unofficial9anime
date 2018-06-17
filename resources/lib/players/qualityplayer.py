@@ -125,7 +125,7 @@ class QualityPlayer(VideoPlayer):
         url = '%s/ajax/episode/info?ts=%s&_=%s&id=%s&server=%s' % (helper.domain_url(), ts, extra_para, ep_id, self.serverid)
 	
         params_url,e = self.net.get_html(url, self.cookies, helper.domain_url())
-        #helper.show_error_dialog(['',str(url)])
+        #helper.show_error_dialog(['',str(params_url)])
         ajax_json = {'params' : {'id': '', 'token': '', 'options': ''}, 'type': 'iframe', 'target': ''}
         
         rot8 = re.search('id\"\:\"(.*?)\"',params_url)#.group(1)
@@ -213,7 +213,7 @@ class QualityPlayer(VideoPlayer):
 	#Part from DxCx/plugin.video.9anime taken
 
     def __get_extra_url_parameter(self, id, ts, server):
-        DD = 'iQDWcsGqN'		
+        DD = 'bVZX0bdD' #'iQDWcsGqN'		
         params = [('id', str(id)), ('ts', str(ts)), ('server', str(server))]
 
         o = self.__s(DD)
