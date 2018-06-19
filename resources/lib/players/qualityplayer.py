@@ -125,7 +125,7 @@ class QualityPlayer(VideoPlayer):
         url = '%s/ajax/episode/info?ts=%s&_=%s&id=%s&server=%s' % (helper.domain_url(), ts, extra_para, ep_id, self.serverid)
 	
         params_url,e = self.net.get_html(url, self.cookies, helper.domain_url())
-        #helper.show_error_dialog(['',str(params_url)])
+        #helper.show_error_dialog(['',str(ts)])
         ajax_json = {'params' : {'id': '', 'token': '', 'options': ''}, 'type': 'iframe', 'target': ''}
         
         rot8 = re.search('id\"\:\"(.*?)\"',params_url)#.group(1)
@@ -213,10 +213,11 @@ class QualityPlayer(VideoPlayer):
 	#Part from DxCx/plugin.video.9anime taken
 
     def __get_extra_url_parameter(self, id, ts, server):
-        DD = 'bVZX0bdD' #'iQDWcsGqN'		
+        DD = 'X8uEFlj2' #'bVZX0bdD' #'iQDWcsGqN'		
         params = [('id', str(id)), ('ts', str(ts)), ('server', str(server))]
 
         o = self.__s(DD)
+        #helper.show_error_dialog(['',str(o)])		
         for i in params:
             o += self.__s(self.__a(DD + i[0], i[1]))
         return o 
@@ -230,7 +231,8 @@ class QualityPlayer(VideoPlayer):
     def __a(self, t, e):
         n = 0
         for i in range(max(len(t), len(e))):
-            n += ord(e[i]) if i < len(e) else 0
-            n += ord(t[i]) if i < len(t) else 0
+            n += ord(e[i]) if i < len(e) else i
+            n += ord(t[i]) if i < len(t) else i
+        #helper.show_error_dialog(['',str(n)])
         return format(n, 'x')  # convert n to hex string		
 		
